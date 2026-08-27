@@ -1,0 +1,26 @@
+{
+  "skill_name": "codebase-audit",
+  "evals": [
+    {
+      "id": 1,
+      "name": "react-state-race-condition",
+      "prompt": "I have a React + TypeScript dashboard at /home/z/my-project/myapp. Users are reporting weird flaky behavior: sometimes when they click between sidebar items quickly, the page shows data from the previous item for a split second, then crashes with 'Cannot read property map of undefined'. The search-as-you-type box also sometimes shows results for the previous query. Can you audit the codebase and fix the issues you find?",
+      "expected_output": "Skill triggers, performs discovery, finds the race condition in useEffect cleanup (missing AbortController for fetch, missing cleanup, stale state), finds the search debounce issue, fixes at root cause, runs typecheck + tests, delivers a structured report with BUG-001 format and severity tags.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "node-api-error-handling",
+      "prompt": "My Node.js Express API keeps crashing in production and the logs show unhandled promise rejections. I think there's also a SQL injection somewhere but I'm not sure. Can you do a security and stability audit of the whole backend?",
+      "expected_output": "Skill triggers, scans the API codebase, identifies unhandled promise rejections (missing try/catch in async route handlers, missing global error middleware), identifies SQL injection via string concatenation, fixes by using parameterized queries and adding error middleware, runs npm test and reports results in the structured format.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "python-data-pipeline-edge-cases",
+      "prompt": "I have a Python data pipeline that reads CSV files, validates them, and writes to a Postgres database. It works most of the time but occasionally fails with 'NoneType has no attribute X' and last week it inserted some duplicate records. Please review and harden the code.",
+      "expected_output": "Skill triggers, audits the pipeline for NoneType access (missing None checks on optional fields), duplicate inserts (missing unique constraint or upsert logic), missing transactions, missing CSV edge cases (empty rows, BOM, encoding), fixes safely, runs pytest, delivers structured report with P0/P1/P2 classifications.",
+      "files": []
+    }
+  ]
+}
